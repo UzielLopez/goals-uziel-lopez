@@ -1,14 +1,14 @@
 <div class="container color-dark">
 
     <div class="col">
-        <p>Añade un elemento de lista de deseos antes de morir</p>
+        <p>Añade un elemento a tu lista de deseos antes de morir</p>
     </div>
 
     <div class="container color-light">
     
         <div class="col">
 
-            <p>Tú lista</p>
+            <p>Tú lista ({{itemCount}})</p>
     
         </div>
         
@@ -16,15 +16,15 @@
 
 </div>
 
-<div class="container color-light">
+<div class="container color-light" [@goals]="goals.length">
 
     <div class="col">
         <p class="sm">Usa esta forma para añadir una nueva meta a tu lista. ¿Qué quiéres hacer con tu vida?</p>
 
         <form>
 
-            <input type="text" class="txt" name="meta" placeholder="Cosa que hacer antes de morir...">
-            <input type="submit" class="btn" value="Añadir meta">
+            <input type="text" class="txt" name="meta" placeholder="Cosa que hacer antes de morir..." [(ngModel)]="goalText">
+            <input type="submit" class="btn" [value]="btnText" (click)="addItem()">
 
 
         </form>
@@ -32,8 +32,8 @@
     </div>
 
     <div class="col">
-        <p class="life-container">
-            No se que hacer con mi vida
+        <p class="life-container" *ngFor="let goal of goals; let i = index" (click)="removeItem(i)">
+            {{goal}}
         </p>
 
 
